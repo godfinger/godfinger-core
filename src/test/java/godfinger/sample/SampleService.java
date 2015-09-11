@@ -42,12 +42,12 @@ public class SampleService {
   }
 
   @HttpPut("hello/{helloTo}")
-  public void helloTo(@Path("helloTo") String helloTo) throws Exception {
+  public void setHelloTo(@Path("helloTo") String helloTo) throws Exception {
     this.helloTo = helloTo;
   }
 
   @HttpDelete("hello")
-  public void helloTo() throws Exception {
+  public void resetHelloTo() throws Exception {
     helloTo = "World";
   }
 
