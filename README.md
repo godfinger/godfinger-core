@@ -1,4 +1,4 @@
-# godfinger-core
+# Light-weight REST Framework for Microservices
 
 ```java
 package godfinger.sample;
