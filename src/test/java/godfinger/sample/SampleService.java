@@ -22,6 +22,7 @@ import godfinger.http.rest.annotation.HttpDelete;
 import godfinger.http.rest.annotation.HttpGet;
 import godfinger.http.rest.annotation.HttpPost;
 import godfinger.http.rest.annotation.HttpPut;
+import godfinger.http.rest.annotation.Path;
 import godfinger.http.rest.annotation.Query;
 
 @Export("sample")
@@ -40,8 +41,8 @@ public class SampleService {
     return "Hello, " + helloTo + "!";
   }
 
-  @HttpPut("hello")
-  public void helloTo(String helloTo) throws Exception {
+  @HttpPut("hello/{helloTo}")
+  public void helloTo(@Path("helloTo") String helloTo) throws Exception {
     this.helloTo = helloTo;
   }
 
