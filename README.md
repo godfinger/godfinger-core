@@ -45,5 +45,5 @@ public class SampleService {
 
 }
 ```
-* Return Data Format
+## Return Data Format  
 The return data format is based on [JSend](http://labs.omniti.com/labs/jsend)
