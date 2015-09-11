@@ -1,6 +1,6 @@
 # godfinger-core
 
-```
+```java
 package godfinger.sample;
 
 import org.springframework.stereotype.Service;
