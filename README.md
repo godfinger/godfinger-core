@@ -19,7 +19,7 @@ public class SampleService {
 
   private String helloTo = "World";
 
-  // POST method for http://host:port/sample/echo
+  // POST method for http://host:port/sample/echo?message={message}
   @HttpPost("echo")
   public String echo(@Query("message") String message) throws Exception {
     return message;
@@ -31,9 +31,9 @@ public class SampleService {
     return "Hello, " + helloTo + "!";
   }
 
-  // PUT method for http://host:port/sample/hello
-  @HttpPut("hello")
-  public void helloTo(String helloTo) throws Exception {
+  // PUT method for http://host:port/sample/hello/{helloTo}
+  @HttpPut("hello/{helloTo}")
+  public void helloTo(@Path("helloTo") String helloTo) throws Exception {
     this.helloTo = helloTo;
   }
 
