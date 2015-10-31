@@ -18,8 +18,11 @@ package godfinger.http;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.cors.CorsConfig;
+import io.netty.handler.codec.http.cors.CorsHandler;
 
 public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -31,17 +34,17 @@ public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
 
   @Override
   public void initChannel(SocketChannel channel) {
-//    CorsConfig corsConfig = CorsConfig
-//            .withAnyOrigin()
-//            .allowCredentials()
-//            .allowedRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE)
-//            .allowedRequestHeaders("accept", "content-type", "session-id")
-//            .build();
+    CorsConfig corsConfig = CorsConfig
+            .withAnyOrigin()
+            .allowCredentials()
+            .allowedRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE)
+            .allowedRequestHeaders("accept", "content-type", "session-id")
+            .build();
 
     ChannelPipeline pipeline = channel.pipeline();
     pipeline.addLast(new HttpServerCodec());
     pipeline.addLast(new FaviconHandler());
-//    pipeline.addLast(new CorsHandler(corsConfig));
+    pipeline.addLast(new CorsHandler(corsConfig));
     pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
     pipeline.addLast(new HttpRequestHandler(requestProcessor));
   }
